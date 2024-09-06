@@ -1,0 +1,15 @@
+extends shared/layout
+
+block content
+  //- Include the note-card mixin here, inside the block
+  include ./shared/note-card.pug
+
+  .container.mt-5
+    h1 Notes Section
+    .row
+      .col-md-4
+        +noteCard('Urgent', 'Meeting Notes', 'Summary of today\'s meeting', 'View Details')
+      .col-md-4
+        +noteCard(null, 'To-Do List', 'Tasks for the week', 'See Tasks')
+      .col-md-4
+        +noteCard('Plan', 'Project Plan', 'Outline of the next project', 'Read More')
