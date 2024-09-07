@@ -1,0 +1,5 @@
+//- error-messages.pug
+if errors
+  each error in errors
+    .alert.alert-danger.text-center
+      span #{error.msg}

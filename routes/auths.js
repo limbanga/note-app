@@ -1,6 +1,11 @@
 var express = require('express');
-const { body, validationResult } = require('express-validator');
 var router = express.Router();
+
+const { body, validationResult } = require('express-validator');
+const bcrypt = require('bcrypt');
+
+const User = require('../models/User');
+
 
 router.get('/login', function(req, res, next) {
   res.render('auths/login', { title: 'Express', users: [
@@ -41,7 +46,8 @@ router.post('/register',
     // Check for validation errors
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      return res.status(400).render('auth/register', {
+      console.error(errors.array()); // For debugging
+      return res.status(400).render('auths/register', {
         title: 'Register',
         errors: errors.array()
       });
@@ -51,7 +57,8 @@ router.post('/register',
       // Check if the email is already registered
       const existingUser = await User.findOne({ email });
       if (existingUser) {
-        return res.status(400).render('auth/register', {
+        console.error('Email is already registered'); // For debugging
+        return res.status(400).render('auths/register', {
           title: 'Register',
           errors: [{ msg: 'Email is already registered' }]
         });
@@ -69,7 +76,8 @@ router.post('/register',
       await user.save();
 
       // Redirect to login page after successful registration
-      res.redirect('/auth/login');
+      console.info('User registered successfully'); // For debugging
+      res.redirect('/auths/login');
     } catch (err) {
       console.error(err);
       res.status(500).send('Server error');
