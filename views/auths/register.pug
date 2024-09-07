@@ -22,3 +22,14 @@ block content
                 label(for="confirmPassword") Confirm Password
                 input#confirmPassword.form-control(type="password" name="confirmPassword" required placeholder="Confirm your password")
               button.btn.btn-primary.btn-block(type="submit") Register
+
+            // Add the link to login page below the form
+            .text-center.mt-3
+              p Already have an account?
+              a(href="/auths/login") Login here
+
+          .card-footer.text-center
+            small.text-muted By signing up, you agree to our 
+            a(href="#") Terms of Service 
+            |  and 
+            a(href="#") Privacy Policy
