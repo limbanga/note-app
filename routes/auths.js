@@ -11,4 +11,14 @@ router.get('/login', function(req, res, next) {
   ] });
 });
 
+router.get('/register', function(req, res, next) {
+  res.render('auths/register', { title: 'Express', users: [
+    { name: 'John', email: ''},
+    { name: 'Paul', email: ''},
+    { name: 'George', email: ''},
+    { name: 'Ringo', email: ''}
+    
+  ] });
+});
+
 module.exports = router;
