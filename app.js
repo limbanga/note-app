@@ -1,15 +1,24 @@
+// app.js
 var createError = require("http-errors");
 var express = require("express");
 var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 const mongoose = require("mongoose");
+const session = require('express-session');
 
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
 var authsRouter = require("./routes/auths");
 
 var app = express();
+
+// Express Session
+app.use(session({
+  secret: 'your-secret2325-keysakfdhasjkd2352@#$@#sdaf', // Replace with your actual secret key
+  resave: false,
+  saveUninitialized: false,
+}));
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
