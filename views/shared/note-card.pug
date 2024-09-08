@@ -6,5 +6,9 @@ mixin noteCard(header, title, description, buttonText)
     .card-body
       h5.card-title= title
       p.card-text= description
-      if buttonText
-        button.btn.btn-primary(type="button")= buttonText
+      .d-flex
+        a.btn.btn-success.px-3(href="#") Done
+        a.btn.btn-primary.px-3(href="#") Important
+        a.btn.btn-secondary.px-3(href="#") Cancelled
+        if buttonText
+          button.btn.btn-light.ms-auto(type="button")= buttonText
