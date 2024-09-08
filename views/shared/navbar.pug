@@ -9,10 +9,14 @@ nav.navbar.navbar-expand-lg.navbar-light.bg-light
         li.nav-item
           a.nav-link.active(aria-current="page", href="/") Home
         li.nav-item
-          a.nav-link(href="/") Solutions
+          a.nav-link(href="/notes") Notes
         li.nav-item
           a.nav-link(href="/about") About
-        li.nav-item
-          a.nav-link(href="/contact") Contact
-        li.nav-item.ms-auto
-          a.nav-link(href="/auths/login") Login
+        if user
+          li.nav-item.ms-auto
+            span.nav-link Hello, #{user.name}!
+          li.nav-item
+            a.nav-link(href="/auths/logout") Logout
+        else
+          li.nav-item.ms-auto
+            a.nav-link(href="/auths/login") Login

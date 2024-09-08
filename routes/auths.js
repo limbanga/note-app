@@ -45,8 +45,8 @@ router.post('/login', [
     
       
     // If credentials are correct, proceed with login
-    req.session.userId = user._id; // Assuming you're using express-session
-    res.redirect('/dashboard'); // Redirect to a protected route or dashboard
+    req.session.user = { id: user._id, name: user.name }; // Store user info in session
+    res.redirect('/'); // Redirect to a protected route or dashboard
   } catch (err) {
     console.error(err);
     res.status(500).send('Server Error');
@@ -119,5 +119,16 @@ router.post('/register',
     }
   }
 );
+
+// Handle logout in auths.js
+router.get('/logout', (req, res) => {
+  req.session.destroy((err) => {
+    if (err) {
+      return res.redirect('/');
+    }
+    res.clearCookie('connect.sid');
+  });
+  res.redirect('/');
+});
 
 module.exports = router;

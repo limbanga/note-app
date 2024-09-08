@@ -1,0 +1,14 @@
+extends ../shared/layout
+
+block content
+  include ../shared/note-card.pug
+  
+  main.container
+    h1 Your Notes
+    a(href="/notes/create" class="btn btn-primary mb-3") Create Note
+
+    .row
+      each note in notes
+        .col-md-4
+          +noteCard(null, note.title, note.content, 'View Details')
+        
