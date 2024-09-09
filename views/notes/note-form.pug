@@ -1,0 +1,9 @@
+
+div.form-group
+  label(for="title") Title
+  input.form-control(type="text", id="title", name="title", value=(note ? note.title : ''))
+
+div.form-group
+  label(for="content") Description
+  textarea.form-control(id="content", name="content")= note ? note.content : ''
+

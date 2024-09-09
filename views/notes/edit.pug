@@ -1,0 +1,11 @@
+extends ../shared/layout
+
+block content
+  main.container
+    h1 Edit Note
+
+    
+    form(action="/notes/edit/" + note._id, method="POST")
+      include note-form.pug  
+
+      button.btn.btn-primary.mt-3(type="submit") Save Changes

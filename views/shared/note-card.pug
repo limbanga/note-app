@@ -1,5 +1,5 @@
 //- Note Card Mixin Definition
-mixin noteCard(header, title, description, buttonText)
+mixin noteCard(_id, header, title, description, buttonText)
   .card.shadow-sm.mb-4
     if header
       .card-header.bg-primary.text-white= header
@@ -18,7 +18,7 @@ mixin noteCard(header, title, description, buttonText)
           | Cancelled
         
       .d-flex.gap-1.mt-2.justify-content-end.btn-group.btn-group-sm
-        a.btn.btn-primary(href="#") Edit
+        a.btn.btn-primary(href="/notes/edit/" + _id) Edit
         a.btn.btn-danger(href="#") Delete
         if buttonText
           button.btn.btn-light(type="button")=buttonText  

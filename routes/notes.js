@@ -48,4 +48,34 @@ router.get("/", async (req, res) => {
   }
 });
 
+// GET: Edit Note Form
+router.get('/edit/:id', async (req, res) => {
+  try {
+    const note = await Note.findById(req.params.id);
+    if (!note) {
+      return res.status(404).send('Note not found');
+    }
+    console.info(note);
+    res.render('notes/edit', { note });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Server Error');
+  }
+});
+
+// POST/PUT: Update Note
+router.post('/edit/:id', async (req, res) => {
+  try {
+    const { title, content } = req.body;
+    const note = await Note.findByIdAndUpdate(
+      req.params.id,
+      { title, content },
+      { new: true }
+    );
+    res.redirect('/notes'); // Redirect to a page with all notes
+  } catch (err) {
+    res.status(500).send('Server Error');
+  }
+});
+
 module.exports = router;

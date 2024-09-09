@@ -7,10 +7,5 @@ block content
       .alert.alert-danger #{error}
 
     form(action="/notes/create", method="POST")
-      .form-group
-        label(for="title" class="form-label") Title
-        input.form-control(type="text", name="title", id="title", required)
-      .form-group
-        label(for="content") Content
-        textarea.form-control(name="content", id="content", rows="5", required)
+      include note-form.pug      
       button.btn.btn-primary(type="submit") Create Note
