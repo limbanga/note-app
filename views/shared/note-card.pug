@@ -6,9 +6,19 @@ mixin noteCard(header, title, description, buttonText)
     .card-body
       h5.card-title= title
       p.card-text= description
-      .d-flex
-        a.btn.btn-success.px-3(href="#") Done
-        a.btn.btn-primary.px-3(href="#") Important
-        a.btn.btn-secondary.px-3(href="#") Cancelled
+      .d-flex.gap-1
+        a.btn.btn-success.btn-sm(href="#")
+          i.fas.fa-check-circle.me-1
+          | Completed
+        a.btn.btn-primary.btn-sm(href="#")
+          i.fas.fa-exclamation-circle.me-1
+          | Important
+        a.btn.btn-secondary.btn-sm(href="#")
+          i.fas.fa-ban.me-1  
+          | Cancelled
+        
+      .d-flex.gap-1.mt-2.justify-content-end.btn-group.btn-group-sm
+        a.btn.btn-primary(href="#") Edit
+        a.btn.btn-danger(href="#") Delete
         if buttonText
-          button.btn.btn-light.ms-auto(type="button")= buttonText
+          button.btn.btn-light(type="button")=buttonText  
