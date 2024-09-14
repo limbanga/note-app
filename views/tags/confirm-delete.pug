@@ -1,0 +1,11 @@
+extends ../shared/layout
+
+block content
+  .container
+    h1 Confirm Delete
+    p Are you sure you want to delete the tag "#{tag.name}"?
+
+    // Form to confirm deletion
+    .d-flex.gap-1
+      a.btn.btn-danger(href=`/tags/delete/${tag._id}`) Delete
+      a.btn.btn-secondary(href="/tags") Cancel

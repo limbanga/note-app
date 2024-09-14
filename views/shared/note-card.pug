@@ -20,6 +20,6 @@ mixin noteCard(_id, owner, header, title, description, buttonText)
         
       .d-flex.gap-1.mt-2.justify-content-end.btn-group.btn-group-sm
         a.btn.btn-primary(href="/notes/edit/" + _id) Edit
-        a.btn.btn-danger(href="#") Delete
+        a.btn.btn-danger(href="/notes/confirm-delete/"+_id) Delete
         if buttonText
           button.btn.btn-light(type="button")=buttonText  

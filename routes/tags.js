@@ -88,15 +88,24 @@ router.post("/edit/:id", async (req, res) => {
   }
 });
 
-// POST handle tag deletion
-router.post("/delete/:id", async (req, res) => {
+// GET display tag deletion confirmation
+router.get("/confirm-delete/:id", async (req, res) => {
   try {
     const tag = await Tag.findById(req.params.id);
     if (!tag) {
       return res.status(404).send("Tag not found");
     }
+    res.render("tags/confirm-delete", { tag });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("An error occurred while retrieving tag");
+  }
+});
 
-    await tag.remove();
+// GET handle tag deletion
+router.get("/delete/:id", async (req, res) => {
+  try {
+    await Tag.deleteOne({ _id: req.params.id });
     res.redirect("/tags");
   } catch (err) {
     console.error(err);

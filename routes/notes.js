@@ -63,4 +63,29 @@ router.post('/edit/:id', async (req, res) => {
   }
 });
 
+// GET: Confirm Delete Note
+router.get('/confirm-delete/:id', async (req, res) => {
+  try {
+    const note = await Note.findById(req.params.id);
+    if (!note) {
+      return res.status(404).send('Note not found');
+    }
+    res.render('notes/confirm-delete', { note });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Server Error');
+  }
+});
+
+// GET: Delete Note
+router.get('/delete/:id', async (req, res) => {
+  try {
+    const userId = req.session.user.id;
+    await Note.findOneAndDelete({ _id: req.params.id, userId });
+    res.redirect('/notes');
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Server Error');
+  }
+});
 module.exports = router;
