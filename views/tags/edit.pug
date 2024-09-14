@@ -1,0 +1,8 @@
+extends ../shared/layout
+
+block content
+  main.container
+    h1 Edit Tags
+    form(action="/tags/edit/" + tag._id, method="POST")
+      include tag-form 
+      button.btn.btn-primary.mt-3(type="submit") Save Changes

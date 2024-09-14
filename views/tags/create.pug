@@ -1,0 +1,9 @@
+
+extends ../shared/layout
+
+block content
+  .container
+    h1 Tạo Tag Mới
+    form(action="/tags/create" method="POST")
+      include tag-form
+      button.btn.btn-primary(type="submit") Tạo Tag

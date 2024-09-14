@@ -124,11 +124,16 @@ router.post('/register',
 router.get('/logout', (req, res) => {
   req.session.destroy((err) => {
     if (err) {
+      // Handle the error if session destruction fails
+      console.error('Session destruction error:', err);
       return res.redirect('/');
     }
-    res.clearCookie('connect.sid');
-  });
-  res.redirect('/');
-});
+    
+    // Clear the session cookie after the session is destroyed
+    res.clearCookie('connect.sid'); 
 
+    // Redirect to home page
+    res.redirect('/');
+  });
+});
 module.exports = router;

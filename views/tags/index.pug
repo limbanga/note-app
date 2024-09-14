@@ -1,0 +1,15 @@
+extends ../shared/layout
+
+block content
+  include tag-card
+  .container
+    h1 Tag List
+    a.btn.btn-primary(href='/tags/create') Create New Tag
+    .mt-3
+      if tags.length > 0
+        .row
+          each tag in tags
+            .col-md-4 
+              +tagCard(tag)
+      else
+        p No tags available.

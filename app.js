@@ -7,11 +7,14 @@ var logger = require("morgan");
 const mongoose = require("mongoose");
 const session = require('express-session');
 
+
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
 var authsRouter = require("./routes/auths");
 var notesRouter = require("./routes/notes");
+var tagsRouter = require("./routes/tags");
 
+const loggedIn = require('./middlewares/logged-in');
 
 
 var app = express();
@@ -21,7 +24,12 @@ app.use(session({
   secret: 'your-secret2325-keysakfdhasjkd2352@#$@#sdaf', // Replace with your actual secret key
   resave: false,
   saveUninitialized: false,
+  cookie: {
+    maxAge: 24 * 60 * 60 * 1000, // 1 ngày (thời gian tồn tại của session)
+    // Nếu bạn muốn session tồn tại lâu hơn, có thể tăng giá trị maxAge
+  }
 }));
+
 
 // Middleware to pass user data to views
 app.use((req, res, next) => {
@@ -42,7 +50,8 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
 app.use("/auths", authsRouter);
-app.use("/notes", notesRouter);
+app.use("/notes", loggedIn, notesRouter);
+app.use("/tags", tagsRouter);
 
 
 // catch 404 and forward to error handler
