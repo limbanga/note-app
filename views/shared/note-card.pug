@@ -1,10 +1,11 @@
 //- Note Card Mixin Definition
-mixin noteCard(_id, header, title, description, buttonText)
+mixin noteCard(_id, owner, header, title, description, buttonText)
   .card.shadow-sm.mb-4
     if header
       .card-header.bg-primary.text-white= header
     .card-body
       h5.card-title= title
+      h6.card-subtitle.mb-2.text-muted= owner
       p.card-text= description
       .d-flex.gap-1
         a.btn.btn-success.btn-sm(href="#")

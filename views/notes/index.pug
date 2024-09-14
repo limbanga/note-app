@@ -11,5 +11,5 @@ block content
     .row
       each note in notes
         .col-md-4
-          +noteCard(note._id, null, note.title, note.content, 'Details')
+          +noteCard(note._id, note.userId, note.title, note.content, 'Details')
         
