@@ -1,3 +1,4 @@
+//- note-form.pug
 
 div.form-group
   label(for="title") Title
@@ -7,3 +8,8 @@ div.form-group
   label(for="content") Description
   textarea.form-control(id="content", name="content")= note ? note.content : ''
 
+div.form-group
+  label(for="tags") Tags
+  select.form-select(id="tags", name="tags", multiple)
+    each tag in tags
+      option(value=tag._id, selected=(note && note.Tags.includes(tag._id)))= tag.name

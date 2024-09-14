@@ -12,4 +12,12 @@ block content
       each note in notes
         .col-md-4
           +noteCard(note._id, note.userId, note.title, note.content, 'Details')
+          // Hiển thị tags liên quan đến note
+          if note.Tags.length
+            h4 Tags:
+            ul
+              each tag in note.Tags
+                li= tag.name
+          else
+            p No tags associated with this note.
         
