@@ -4,8 +4,8 @@ block content
   .container.mt-5
     .row.justify-content-center
       .col-md-6
-        .card.shadow
-          .card-header.text-center
+        .card
+          .text-center.pt-3
             h3 Register
           .card-body
             form(action="/auths/register" method="POST")
@@ -21,15 +21,17 @@ block content
               .form-group.mb-3
                 label(for="confirmPassword") Confirm Password
                 input#confirmPassword.form-control(type="password" name="confirmPassword" required placeholder="Confirm your password")
-              button.btn.btn-primary.btn-block(type="submit") Register
+              .text-end
+                button.btn.btn-primary.btn-block(type="submit") Register
 
             // Add the link to login page below the form
             .text-center.mt-3
-              p Already have an account?
+              | Already have an account? 
               a(href="/auths/login") Login here
 
-          .card-footer.text-center
-            small.text-muted By signing up, you agree to our 
-            a(href="#") Terms of Service 
-            |  and 
-            a(href="#") Privacy Policy
+          .text-center.pb-2.fs-6
+            .text-muted 
+              By signing up, you agree to our 
+              a(href="#") Terms of Service 
+              |  and 
+              a(href="#") Privacy Policy

@@ -4,23 +4,24 @@ block content
   .container.mt-5
     .row.justify-content-center
       .col-md-6
-        .card.shadow
-          .card-header.text-center
+        .card
+          .text-center.p-3
             h3 Login
           .card-body
             form(action="/auths/login" method="POST")
               .form-group.mb-3
-                label(for="email") Email address
+                label(for="email", class="form-label") Email address
                 input#email.form-control(type="email" name="email" required placeholder="Enter your email")
               .form-group.mb-3
-                label(for="password") Password
+                label(for="password", class="form-label") Password
                 input#password.form-control(type="password" name="password" required placeholder="Enter your password")
               .form-group.mb-3.form-check
                 input#rememberMe.form-check-input(type="checkbox" name="rememberMe")
-                label.form-check-label(for="rememberMe") Remember Me
-              button.btn.btn-primary.btn-block(type="submit") Login
+                label.form-check-label(for="rememberMe", class="form-label") Remember Me
+              .text-end
+                button.btn.btn-primary.btn-block(type="submit") Login
 
             // Add the link to the register page below the form
-            .text-center.mt-3
-              p Don't have an account?
+            .text-center
+              | Don't have an account? 
               a(href="/auths/register") Register here
