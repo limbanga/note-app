@@ -3,14 +3,47 @@ const router = express.Router();
 const Note = require("../models/Note");
 const Tag = require("../models/Tag");
 
-// GET - List user's notes
+// GET - List user's notes (with filter by tag and search functionality)
 router.get("/", async (req, res) => {
+  if (!req.session.user) {
+    return res.redirect("/auths/login");
+  }
+
+  const userId = req.session.user.id;
+  const { tag, search } = req.query;  // Lấy tag và search từ query string
+
   try {
-    // Tìm tất cả các note của người dùng và populate các tags liên quan
-    const notes = await Note.find({ userId: req.session.user.id }).populate('Tags');
-    
-    // Render view và truyền dữ liệu notes
-    res.render("notes/index", { notes });
+    let notes;
+
+    // Điều kiện tìm kiếm
+    const searchQuery = search
+      ? {
+          $or: [
+            { title: new RegExp(search, 'i') }, // Tìm theo tiêu đề (không phân biệt chữ hoa/chữ thường)
+            { content: new RegExp(search, 'i') }, // Tìm theo nội dung
+          ],
+        }
+      : {};
+
+    // Nếu có tag trong query, chỉ lấy các note chứa tag đó và phù hợp với từ khóa tìm kiếm
+    if (tag) {
+      notes = await Note.find({
+        userId: userId,
+        Tags: tag,
+        ...searchQuery,
+      }).populate('Tags');
+    } else {
+      // Nếu không có tag, chỉ tìm kiếm các note phù hợp với từ khóa tìm kiếm
+      notes = await Note.find({
+        userId: userId,
+        ...searchQuery,
+      }).populate('Tags');
+    }
+
+    // Lấy tất cả tags để hiển thị trong bộ lọc
+    const tags = await Tag.find({ userId: userId });
+
+    res.render("notes/index", { notes, tags, selectedTag: tag, search });
   } catch (err) {
     console.error(err);
     res.render("notes/index", { error: "An error occurred while retrieving notes" });

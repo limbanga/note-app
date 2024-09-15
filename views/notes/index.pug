@@ -1,23 +1,38 @@
 extends ../shared/layout
 
 block content
-  include ../shared/note-card.pug
-  
+  include note-card
+
   main.container
     h1 Your Notes
     p.text-muted.mb-3 Welcome to your notes dashboard. Here you can create, edit, and delete your notes.
     a(href="/notes/create" class="btn btn-primary mb-3") Create Note
 
-    .row
-      each note in notes
-        .col-md-4
-          +noteCard(note._id, note.userId, note.title, note.content, 'Details')
-          // Hiển thị tags liên quan đến note
-          if note.Tags.length
-            h4 Tags:
-            ul
-              each tag in note.Tags
-                li= tag.name
-          else
-            p No tags associated with this note.
+    // Form tìm kiếm và lọc
+    form(method="GET" action="/notes")
+      .form-row
+        // Thanh tìm kiếm
+        .col-md-6
+          .form-group
+            label(for="search") Search Notes:
+            input.form-control(type="text", name="search", id="search", value=search placeholder="Search by title or content")
         
+        // Dropdown lọc theo tags
+        .col-md-4
+          .form-group
+            label(for="tag") Filter by Tag:
+            select.form-control(name="tag" id="tag")
+              option(value="") All Tags
+              each tag in tags
+                option(value=tag._id selected=(tag._id == selectedTag))= tag.name
+
+        .col-md-2.align-self-end
+          button.btn.btn-secondary(type="submit") Apply Filter/Search
+
+    .row
+      if notes.length
+        each note in notes
+          .col-md-4
+            +noteCard(note._id, note.userId, note.Tags, note.title, note.content, 'Details')
+      else
+        p.text-muted No notes found.

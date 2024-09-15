@@ -1,5 +1,5 @@
 //- Note Card Mixin Definition
-mixin noteCard(_id, owner, header, title, description, buttonText)
+mixin noteCard(_id, owner, tags, header, title, description, buttonText)
   .card.shadow-sm.mb-4
     if header
       .card-header.bg-primary.text-white= header
@@ -8,15 +8,8 @@ mixin noteCard(_id, owner, header, title, description, buttonText)
       h6.card-subtitle.mb-2.text-muted= owner
       p.card-text= description
       .d-flex.gap-1
-        a.btn.btn-success.btn-sm(href="#")
-          i.fas.fa-check-circle.me-1
-          | Completed
-        a.btn.btn-primary.btn-sm(href="#")
-          i.fas.fa-exclamation-circle.me-1
-          | Important
-        a.btn.btn-secondary.btn-sm(href="#")
-          i.fas.fa-ban.me-1  
-          | Cancelled
+        each tag in tags
+          span.badge.bg-secondary= tag.name
         
       .d-flex.gap-1.mt-2.justify-content-end.btn-group.btn-group-sm
         a.btn.btn-primary(href="/notes/edit/" + _id) Edit
