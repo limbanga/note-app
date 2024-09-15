@@ -4,8 +4,8 @@ mixin noteCard(_id, owner, tags, header, title, description, buttonText)
     if header
       .card-header.bg-primary.text-white= header
     .card-body
-      h5.card-title= title
-      h6.card-subtitle.mb-2.text-muted= owner
+      h5= title
+      small.fs-6.mb-2.text-muted @#{owner.name}
       p.card-text= description
       .d-flex.gap-1
         each tag in tags

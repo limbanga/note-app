@@ -43,7 +43,7 @@ router.get("/", async (req, res) => {
     // Lấy tất cả tags để hiển thị trong bộ lọc
     const tags = await Tag.find({ userId: userId });
 
-    res.render("notes/index", { notes, tags, selectedTag: tag, search });
+    res.render("notes/index", { notes, tags, selectedTag: tag, search, user: req.session.user });
   } catch (err) {
     console.error(err);
     res.render("notes/index", { error: "An error occurred while retrieving notes" });

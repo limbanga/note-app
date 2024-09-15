@@ -33,6 +33,6 @@ block content
       if notes.length
         each note in notes
           .col-md-4
-            +noteCard(note._id, note.userId, note.Tags, note.title, note.content, 'Details')
+            +noteCard(note._id, user, note.Tags, note.title, note.content, 'Details')
       else
         p.text-muted No notes found.
