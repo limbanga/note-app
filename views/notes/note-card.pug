@@ -1,18 +1,26 @@
-//- Note Card Mixin Definition
-mixin noteCard(_id, owner, tags, header, title, description, buttonText)
+mixin noteCard(_id, owner, tags, title, description)
   .card.shadow-sm.mb-4
-    if header
-      .card-header.bg-primary.text-white= header
+    .d-flex.gap-1.mt-2.justify-content-between.p-2
+      div
+        h5.m-0 #{title}
+        span(style="font-size: 12px;").fw-medium.text-muted @#{owner.name}
+      //- Dropdown menu
+      .dropdown.dropdown-menu-end
+        button.btn.btn-light.btn-sm(type="button" id="dropdownMenuButton-#{_id}" data-bs-toggle="dropdown" aria-expanded="false")
+          i.fa.fa-ellipsis-h
+          //- Dùng icon ba chấm để biểu thị tùy chọn
+        ul.dropdown-menu(aria-labelledby="dropdownMenuButton-#{_id}")
+          li
+            a.dropdown-item(href="/notes/edit/" + _id) Edit
+          li
+            a.dropdown-item(href="/notes/confirm-delete/" + _id) Delete
+          
     .card-body
-      h5= title
-      small.fs-6.mb-2.text-muted @#{owner.name}
-      p.card-text= description
+      p.card-text=description
+      //- Hiển thị tags
       .d-flex.gap-1
         each tag in tags
           span.badge.bg-secondary= tag.name
-        
-      .d-flex.gap-1.mt-2.justify-content-end.btn-group.btn-group-sm
-        a.btn.btn-primary(href="/notes/edit/" + _id) Edit
-        a.btn.btn-danger(href="/notes/confirm-delete/"+_id) Delete
-        if buttonText
-          button.btn.btn-light(type="button")=buttonText  
+      //- Hiển thị thời gian tạo
+      p.card-text.mt-2.text-muted
+        small Created at #{new Date(_id.getTimestamp()).toLocaleString()}
