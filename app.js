@@ -30,6 +30,12 @@ app.use(session({
   }
 }));
 
+// Middleware to pass current URL to views
+app.use((req, res, next) => {
+  res.locals.currentUrl = req.originalUrl;
+  next();
+});
+
 
 // Middleware to pass user data to views
 app.use((req, res, next) => {
