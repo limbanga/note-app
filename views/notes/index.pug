@@ -24,15 +24,15 @@ block content
               option(value=tag._id selected=(tag._id == selectedTag))= tag.name
         button.btn.btn-dark(type="submit") Apply Filter/Search
         button.btn.btn-light(type="button" onclick="window.location.href='/notes'")
-          i.fa-solid.fa-arrows-rotate
-    .row
-      .col-md-12
-        hr
-      .col-3
-        
+          i.fa-solid.fa-arrows-rotate 
+          |  Reset
+        a.ms-auto.btn.btn-light(href="#") Advance Filter
+    hr.mb-3
 
     .row
       if notes.length
+        .text-muted.mb-3
+          | #{notes.length} notes found
         each note in notes
           .col-md-4
             +noteCard(note._id, user, note.Tags, note.title, note.content, 'Details')
