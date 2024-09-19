@@ -6,28 +6,30 @@ block content
   main.container
     h1 Your Notes
     p.text-muted.mb-3 Welcome to your notes dashboard. Here you can create, edit, and delete your notes.
-    a(href="/notes/create" class="btn btn-primary mb-3") Create Note
+    a(href="/notes/create" class="btn btn-primary btn-sm mb-3") Create Note
 
     // Form tìm kiếm và lọc
     form(method="GET" action="/notes")
-      .form-row
+      .d-flex.gap-2.justify-content-start.align-items-end
         // Thanh tìm kiếm
-        .col-md-6
-          .form-group
-            label(for="search") Search Notes:
-            input.form-control(type="text", name="search", id="search", value=search placeholder="Search by title or content")
+        .form-group.w-25
+          label(for="search" class="form-label") Search Notes:
+          input.form-control(type="text", name="search", id="search", value=search placeholder="Search by title or content")
+        // Thanh lọc theo tag
+        .form-group.w-25
+          label(for="tag" class="form-label") Filter by Tag:
+          select.form-control(name="tag" id="tag")
+            option(value="") All Tags
+            each tag in tags
+              option(value=tag._id selected=(tag._id == selectedTag))= tag.name
+        button.btn.btn-dark(type="submit") Apply Filter/Search
+        button.btn.btn-light(type="button" onclick="window.location.href='/notes'")
+          i.fa-solid.fa-arrows-rotate
+    .row
+      .col-md-12
+        hr
+      .col-3
         
-        // Dropdown lọc theo tags
-        .col-md-4
-          .form-group
-            label(for="tag") Filter by Tag:
-            select.form-control(name="tag" id="tag")
-              option(value="") All Tags
-              each tag in tags
-                option(value=tag._id selected=(tag._id == selectedTag))= tag.name
-
-        .col-md-2.align-self-end
-          button.btn.btn-secondary(type="submit") Apply Filter/Search
 
     .row
       if notes.length
