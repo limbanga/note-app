@@ -108,7 +108,7 @@ router.post('/edit/:id', async (req, res) => {
     const { title, content, tags } = req.body;
     const updatedNote = await Note.findByIdAndUpdate(
       req.params.id,
-      { title, content, Tags: tags ? tags.split(',') : [] },
+      { title, content, Tags: tags || [] },
       { new: true }
     );
     res.redirect('/notes');
