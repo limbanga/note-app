@@ -3,6 +3,8 @@ extends ../shared/layout
 block content
   main.container
     h1 Create Note
+    p.text-muted.mb-3 Fill in the form below to create a new note.
+    a(href="/notes" class="btn btn-secondary btn-sm mb-3") Back to Notes
     if error
       .alert.alert-danger #{error}
 

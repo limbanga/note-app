@@ -3,8 +3,9 @@ extends ../shared/layout
 block content
   main.container
     h1 Edit Note
+    p.text-muted.mb-3 Fill in the form below to edit your note.
+    a(href="/notes" class="btn btn-secondary btn-sm mb-3") Back to Notes
 
-    
     form(action="/notes/edit/" + note._id, method="POST")
       include note-form.pug  
 

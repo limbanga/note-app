@@ -2,14 +2,21 @@
 
 div.form-group
   label(for="title") Title
-  input.form-control(type="text", id="title", name="title", value=(note ? note.title : ''))
+  input.form-control(type="text" id="title" name="title", value=(note ? note.title : ''))
 
 div.form-group
   label(for="content") Description
-  textarea.form-control(id="content", name="content")= note ? note.content : ''
+  textarea.form-control(id="content" name="content")= note ? note.content : '' 
 
 div.form-group
   label(for="tags") Tags
-  select.form-select(id="tags", name="tags", multiple)
+  select.form-select(id="tags" name="tags", multiple)
     each tag in tags
-      option(value=tag._id, selected=(note && note.Tags.includes(tag._id)))= tag.name
+      option(
+        value=tag._id, 
+        selected=(
+          /* Check if tag is selected */
+          note && 
+          note.Tags.map(tag => String(tag._id)).includes(String(tag._id)))
+          )= tag.name
+
