@@ -21,6 +21,10 @@ mixin noteCard(_id, owner, tags, title, description)
       .d-flex.gap-1
         each tag in tags
           span.badge.bg-secondary= tag.name
-      //- Hiển thị thời gian tạo
-      p.card-text.mt-2.text-muted
-        small Created at #{new Date(_id.getTimestamp()).toLocaleString()}
+      div.mt-2.d-flex.justify-content-between.align-items-center
+        //- Hiển thị thời gian tạo
+        .text-muted
+          small Created at #{new Date(_id.getTimestamp()).toLocaleString()}
+        //- Xem chi tiết
+        div
+          a(href="/notes/details/" + _id, class="btn btn-sm btn-light") Details
