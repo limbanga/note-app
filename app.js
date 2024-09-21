@@ -8,7 +8,6 @@ const mongoose = require("mongoose");
 const session = require('express-session');
 require('dotenv').config();
 
-
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
 var authsRouter = require("./routes/auths");
@@ -87,6 +86,5 @@ mongoose
     console.error("MongoDB connection error:", err);
   });
 
-// append some code
-
+console.info("INFO: App running in http://localhost:3000/");
 module.exports = app;
