@@ -2,11 +2,12 @@ extends ../shared/layout
 
 block content
   .container.mt-5
-    .row.justify-content-center
-      .col-md-6
-        .card
-          .text-center.p-3
-            h3 Login
+    .d-flex.justify-content-center
+      div(style="width: auto; min-width: 500px; max-width: 700px;") 
+        .shadow-sm.p-3.bg-white.rounded
+          h5
+            include ../shared/brand
+          h4 Welcome Back!
           .card-body
             form(action="/auths/login" method="POST")
               .form-group.mb-3
@@ -19,9 +20,22 @@ block content
                 input#rememberMe.form-check-input(type="checkbox" name="rememberMe")
                 label.form-check-label(for="rememberMe", class="form-label") Remember Me
               .text-end
-                button.btn.btn-primary.btn-block(type="submit") Login
+                button.btn.btn-dark.btn-sm.px-3(type="submit") Login
 
             // Add the link to the register page below the form
             .text-center
               | Don't have an account? 
               a(href="/auths/register") Register here
+            // Or login with Google, Facebook, GitHub, etc.
+            .hr-label
+              span.hr-label-text or
+
+            .d-flex.justify-content-center.gap-1
+              button.btn.btn-light(type="button")
+                i.fab.fa-google
+              button.btn.btn-light(type="button")
+                i.fa-brands.fa-facebook
+              button.btn.btn-light(type="button")
+                i.fa-brands.fa-github
+
+

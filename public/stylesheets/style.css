@@ -1,8 +1,19 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+.hr-label {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: 20px 0;
 }
 
-a {
-  color: #00B7FF;
+.hr-label::before,
+.hr-label::after {
+  content: '';
+  flex: 1;
+  border-top: 1px solid #ddd;
+}
+
+.hr-label-text {
+  padding: 0 10px;
+  color: #888; /* Customize text color */
+  font-weight: bold; /* Optional: Bold text */
 }
