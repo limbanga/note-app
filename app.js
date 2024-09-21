@@ -6,6 +6,7 @@ var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 const mongoose = require("mongoose");
 const session = require('express-session');
+require('dotenv').config();
 
 
 var indexRouter = require("./routes/index");
@@ -21,7 +22,7 @@ var app = express();
 
 // Express Session
 app.use(session({
-  secret: 'your-secret2325-keysakfdhasjkd2352@#$@#sdaf', // Replace with your actual secret key
+  secret: process.env.SECRET_KEY, // Replace with your actual secret key
   resave: false,
   saveUninitialized: false,
   cookie: {
@@ -78,7 +79,7 @@ app.use(function (err, req, res, next) {
 
 // MongoDB Connection
 mongoose
-  .connect("mongodb://localhost:27017/noteAppDB", {})
+  .connect(process.env.MONGODB_URI, {})
   .then(() => {
     console.log("Connected to MongoDB");
   })
