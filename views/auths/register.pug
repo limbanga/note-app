@@ -2,36 +2,39 @@ extends ../shared/layout
 
 block content
   .container.mt-5
-    .row.justify-content-center
-      .col-md-6
-        .card
-          .text-center.pt-3
-            h3 Register
-          .card-body
-            form(action="/auths/register" method="POST")
-              .form-group.mb-3
-                label(for="name") Full Name
-                input#name.form-control(type="text" name="name" required placeholder="Enter your full name")
-              .form-group.mb-3
-                label(for="email") Email address
-                input#email.form-control(type="email" name="email" required placeholder="Enter your email")
-              .form-group.mb-3
-                label(for="password") Password
-                input#password.form-control(type="password" name="password" required placeholder="Enter your password")
-              .form-group.mb-3
-                label(for="confirmPassword") Confirm Password
-                input#confirmPassword.form-control(type="password" name="confirmPassword" required placeholder="Confirm your password")
-              .text-end
-                button.btn.btn-primary.btn-block(type="submit") Register
+    .d-flex.justify-content-center
+      div(style="width: auto; min-width: 500px; max-width: 700px;").shadow-sm.px-4.py-3.bg-white.rounded
+        h5
+          include ../shared/brand
+        h4 Register
+        //- Add the form for user registration
+        div
+          form(action="/auths/register" method="POST")
+            .form-group.mb-3
+              label(for="name").form-label Full Name
+              input#name.form-control(type="text" name="name" required placeholder="Enter your full name")
+            .form-group.mb-3
+              label(for="email").form-label Email
+              input#email.form-control(type="email" name="email" required placeholder="Enter your email")
+            .form-group.mb-3
+              label(for="password").form-label Password
+              input#password.form-control(type="password" name="password" required placeholder="Enter your password")
+            //- .form-group.mb-3
+            //-   label(for="confirmPassword").form-label Confirm Password
+            //-   input#confirmPassword.form-control(type="password" name="confirmPassword" required placeholder="Confirm your password")
+            .text-end
+              button.btn.btn-dark.btn-sm.px-3(type="submit") Register
+        //- Add the terms of service and privacy policy links below the form
+        div.mt-4.text-muted.small 
+          | By signing up, you agree to our 
+          a(href="#") Terms of Service 
+          |  and 
+          a(href="#") Privacy Policy
 
-            // Add the link to login page below the form
-            .text-center.mt-3
-              | Already have an account? 
-              a(href="/auths/login") Login here
-
-          .text-center.pb-2.fs-6
-            .text-muted 
-              By signing up, you agree to our 
-              a(href="#") Terms of Service 
-              |  and 
-              a(href="#") Privacy Policy
+        //- Add the link to login page below the form
+        .text-center.mt-3.fs-6
+          | Already have an account? 
+          a(href="/auths/login") Login here
+        
+        //- Or login with Google, Facebook, GitHub, etc.
+        include social-auth
