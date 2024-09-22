@@ -2,6 +2,9 @@ doctype html
 html
   head
     title= title
+    meta(charset="utf-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1")
+    link(href="/icons/brand.svg" rel="icon" type="image/svg+xml")
     link(rel="stylesheet" href="/bootstrap/css/bootstrap.min.css")
     link(rel="stylesheet" 
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" 
@@ -15,7 +18,8 @@ html
     // Include the error messages here
     include ./error-messages.pug
 
-    block content  // Where the dynamic content will be rendered
+    block content  
+    // Where the dynamic content will be rendered
 
     script(src="/bootstrap/js/bootstrap.bundle.min.js")
     //- script(src="/bootstrap/js/popper.min.js")
