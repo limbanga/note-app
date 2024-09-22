@@ -1,26 +1,38 @@
 extends ./shared/layout
 
 block content
-  .container.mt-5
-    .row
-      .col-md-8.offset-md-2
-        h1.text-center About Us
-        p.text-muted.text-center
+  .container.mt-3
+    .d-flex.justify-content-center
+      div.text-center
+        h2 About Us
+        p.text-muted.fs-5
           | Welcome to NoteApp, where managing your notes is easy and efficient.
         hr
-        h3 Our Mission
-        p
-          | We created NoteApp with the aim of helping users organize their lives and work effortlessly through simple, user-friendly, and secure note-taking. Our app allows you to quickly and easily capture ideas, daily tasks, and important information.
+        div(style="width: auto; max-width: 800px; margin: 0 auto;")
+          div 
+            h4 Our Mission
+            p.text-muted.fs-5
+              | We created NoteApp with the aim of helping users organize their lives and work effortlessly through simple, user-friendly, and secure note-taking. Our app allows you to quickly and easily capture ideas, daily tasks, and important information.
 
-        h3 Why Choose Us?
-        ul
-          li User-friendly interface designed for simplicity
-          li High-level security with data encryption
-          li Seamless synchronization across multiple devices
-          li Continuous updates and improvements for the best experience
+          .pt-2
+            h4 Why Choose Us?
+            div.text-muted.fs-5 
+              div User-friendly interface designed for simplicity
+              div High-level security with data encryption
+              div Seamless synchronization across multiple devices
+              div Continuous updates and improvements for the best experience
+          
+          .pt-2
+            h4 Contact Us
+            p.text-muted.fs-5
+              | If you have any questions, feedback, or suggestions, don't hesitate to contact us via 
+          .d-flex.gap-3.justify-content-center
+            a.btn.btn-danger.btn-sm(href="/auths/register")
+              i.fa-solid.fa-envelope
+            a.btn.btn-dark.btn-sm(href="/auths/register")
+              i.fa-brands.fa-square-x-twitter
+            a.btn.btn-primary.btn-sm(href="/auths/register")
+              i.fa-brands.fa-facebook
 
-        h3 Contact Us
-        p
-          | If you have any questions, feel free to 
-          a(href="/contact") reach out to us
-          | . We are always here to help.
+          .d-flex.justify-content-center.mt-3
+            a.btn.btn-dark.btn-sm.px-3(href="/") Back to Home Page
