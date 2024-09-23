@@ -1,35 +1,38 @@
 extends ./shared/layout
 
 block content
-  .container
-    .jumbotron.text-center
-      h1 Welcome to NoteApp!
-      p.lead
-        | NoteApp is your simple and intuitive platform for organizing your ideas, tasks, and inspirations. Whether you're a student, a professional, or just someone who loves staying organized, 
+  .container.mt-3
+    h1.text-center.mb-3.lh-base
+      | Life is messy
+      br
+      | Organize it with 
+      include ./shared/brand  
+    p.fw-medium.lead.fs-5.lh-lg
+      | Whether you're 
+      span.text-primary
+        | a student, a professional, or just someone who loves staying organized,
+      span 
         | our app helps you create, edit, and manage your notes easily. With the ability to tag and filter notes, you can keep everything in order and accessible at all times.
+  
+  .text-center
+    a.btn.btn-primary.btn-lg.rounded-pill(href='/notes') 
+      | Create Your First Note
+      i.fa-solid.fa-arrow-right.ms-2
 
   .container.mt-5
-    h2 Why Choose NoteApp?
-    p 
-      | NoteApp provides an easy-to-use interface with powerful features like note categorization, tag-based filtering, and more! With a focus on simplicity and efficiency, NoteApp ensures you stay productive without distractions.
-
+    h1 What We Offer
     .row.mt-4
       .col-md-4
-        h3 Organize Notes
-        p
-          | Create, edit, and categorize notes effortlessly. Keep your ideas sorted and accessible whenever you need them.
-        
+        h3 Organize Your Notes
+        p.text-muted
+          | Create, edit, and categorize your notes effortlessly. Keep your ideas organized and accessible at all times.
+
       .col-md-4
         h3 Tag and Filter
-        p
-          | Use tags to organize your notes by topic or priority. Our filtering options help you quickly find what you're looking for.
+        p.text-muted
+          | Use tags to categorize your notes by topic or priority, and our filters will help you quickly locate what you need.
 
       .col-md-4
-        h3 Stay Productive
-        p
-          | NoteApp helps you stay on top of your tasks and ideas, so you can focus on what matters most. Keep your workflow smooth and efficient.
-
-    .text-center.mt-5
-      a.btn.btn-light.btn-lg(href='/notes') 
-        | Create Your First Note
-        i.fa-solid.fa-arrow-right.ms-2
+        h3 Boost Your Productivity
+        p.text-muted
+          | NoteApp helps you stay on top of tasks and ideas, so you can concentrate on what truly matters and enjoy a seamless workflow.
